@@ -13,10 +13,10 @@ Este projeto consiste em um sistema interno de cadastro de usuários desenvolvid
 ```
 Sistema-Interno-de-Cadastro-de-Usuarios/
 │
-├── Campos_usuarios.js
-├── Validar_usuarios.js
-├── Dados_usuarios.json
-└── README.md
+├── Campos_usuarios.js // Arquivo de interação com o usuaário.
+├── Validar_usuarios.js // Arquivo de funções, validações e restrições.
+├── Dados_usuarios.json // Arquivo que salva os dados do usuário cadastrado.
+└── README.md // Descrição do projeto
 ```
 
 ## Como Executar o Projeto
