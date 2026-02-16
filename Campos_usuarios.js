@@ -19,6 +19,7 @@ const {salvarusuario,
 
 function deletarusuario () { // Função que permiti deletar um usuário   
     
+    // Exibe as opções iniciais do menu de exclusão
     console.log("\n1 - Excluir permanentemente um usuário cadastrado.");
     console.log("2 - Retornar ao menu de opções.");
 
@@ -28,11 +29,12 @@ function deletarusuario () { // Função que permiti deletar um usuário
 
         case"1": rl.question("\nDigite a numeração do usuario que deseja excluir: ", (usuariodigitado) => {
             
-            if (buscarexcluirusuario(usuariodigitado)) {
-                deletarusuario();
+            if (buscarexcluirusuario(usuariodigitado)) {  // Verifica se o usuário informado existe no banco. 
+                deletarusuario(); // Caso não exista o usuário no banco, reinicia o fluxo e volta para as opções iniciais da função.
                 return;
             }
 
+        // Exibe confirmação antes de excluir definitivamente
         console.log(`\n1 - Sim, desejo exlcuir o usuario. ${usuariodigitado}`);
         console.log(`2 - Não desejo exluir o usuário ${usuariodigitado}, cancelar operação.`);
 
@@ -43,8 +45,8 @@ function deletarusuario () { // Função que permiti deletar um usuário
             case"1": 
             console.log(`\nUsuário ${usuariodigitado} excluido do banco de dados com sucesso.`);
             
-             if (excluirusuario(usuariodigitado)) {
-                deletarusuario();
+             if (excluirusuario(usuariodigitado)) { // Chama a função de excluir o usuário para confirmar a exclusão.
+                deletarusuario(); // Retorna para as opções iniciais da função de exclusão.
                 return;
             }
 
@@ -94,10 +96,10 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
                 editardadosusuario(); // Depois de mostrar a mensagem de que o usuário é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
             } // Fecha a verificação de que o usuário é incorreto, ou seja, se a função de verificar um usuário incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
 
-            console.log("\n1 - Nome Completo"); 
-            console.log("2 - E-mail");
-            console.log("3 - CPF"); 
-            console.log("4 - CEP");
+            console.log("\n1 - Nome Completo"); // O número "1" corresponde a "Nome Completo"
+            console.log("2 - E-mail"); // O número "2" corresponde a "E-mail"
+            console.log("3 - CPF"); // O número "3" corresponde a "CPF"
+            console.log("4 - CEP"); // O número "4" corresponde a "CEP"
 
             rl.question("\nDigite a numeração do dado que deseja editar: ", (dado) => {
                 if (dadoincorreto(dado)) {
@@ -185,11 +187,11 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 function menulooping () { // Função para mostrar o menu de opções para o usuário, e permitir que ele escolha o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa. O "looping" é para mostrar o menu de opções novamente, depois que o usuário escolher uma opção, para ele poder escolher outra opção ou sair do programa.
 
 // Inserção das opções do menu, para o usuario decidir o que quer fazer com base no digito.
-    console.log("\n1 - Cadastrar Usuário"); 
-    console.log("2 - Listar Usuários"); 
-    console.log("3 - Sair"); 
-    console.log("4 - Editar os dados de um Usuário"); 
-    console.log("5 - Excluir um Usuário"); 
+    console.log("\n1 - Cadastrar Usuário"); // O número "1" corresponde a "Cadastrar Usuários"
+    console.log("2 - Listar Usuários"); // O número "2" corresponde a "Listar Usuários"
+    console.log("3 - Sair"); // O número "3" corresponde a "Sair"
+    console.log("4 - Editar os dados de um Usuário"); // O número "4" corresponde a "Editar os dados de um Usuário"
+    console.log("5 - Excluir um Usuário"); // O número "5" corresponde a "Excluir um Usuário"
 
     rl.question ("\nDigite a opção desejada: ", (opcao) => { // Faz a pergunta para o usuário, e espera a resposta. O "opcao" é o que o usuário digitou, e é usado para comparar com as opções do menu, para saber qual opção o usuário escolheu. O "question" é para fazer a pergunta, e o "callback" é para esperar a resposta do usuário, e depois executar a função que está dentro do callback, que é onde tem a lógica para cada opção escolhida pelo usuário.
 
