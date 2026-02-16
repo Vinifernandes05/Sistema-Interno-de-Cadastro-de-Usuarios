@@ -20,18 +20,8 @@ const fs = require("fs"); // Importa o módulo de sistema de arquivos
                   fs.writeFileSync ("Dados_usuarios.json", dados) // Escreve os dados no arquivo Dados_usuarios.json. Salva tudo de volta no arquivo
                // fs.writeFileSync( caminhoDoArquivo, O_QUE_VAI_SER_ESCRITO )
                console.log("Dados salvos com sucesso.")
-
-// Criar função para salvar os dados no arquivo JSON, sem sobrescrever os dados antigos
-// Criar uma lista (aray) vazia para armazenar os usuários, sem sobrescrever os dados antigos 
-// Verificar se o arquivo já existe
-// Se existir, acessar o arquivo e ler os dados dentro dele, ainda em JSON
-// Transformar os dados de JSON para JS (JSON.parse)
-// Trabalhar com os dados (JS)
-// Adicionar e armazenar na lista (array) de usuários
-// Transformar os dados de volta de JS para JSON (JSON.stringify), para salvar no arquivo os dados em JSON
-// Salvar no arquivo
-
         }
+
 
       function emailrepetido (email) { // Função que não permite salvar um mesmo e-mail que já está inserido no sistema
    let usuarios = [] // Cria um array vazio de usuarios, uma lsita vazia
@@ -40,10 +30,9 @@ const fs = require("fs"); // Importa o módulo de sistema de arquivos
       usuarios = JSON.parse(conteudo);  // Transforma a string JSON em um objeto JS. Agora "usuarios" contém os usuarios antigos. String → Objeto. JSON -> JS
 
       for (let i = 0; i < usuarios.length; i++) {  // Loop que percorre todo o array
-         if (usuarios[i].E_mail === email) { // Condição que verifica se o email salvo daquele usuário é igual a string email
-                    console.log("\nE-mail já cadastrado.");
+         if (usuarios[i].E_mail === email) { // Condição que verifica se o email salvo daquele usuário é igual a string email. "usuarios[i].E_mail" → o e-mail salvo daquele usuário. email -> é uma string
 
-// usuarios[i].E_mail → o e-mail salvo daquele usuário. email -> é uma string
+                    console.log("\nE-mail já cadastrado.");
                      return true; // Se o email ja estiver cadastrado, retorna true
          }
       }                 
@@ -97,11 +86,13 @@ console.log ("\nNome Completo permite apenas letras.");
 // "\." → O ponto é especial, mas, para virar literal (.), usa-se smpre a barra antes.
 // "com" → Texto literal.
 // "$" → Diz que “a validação termina aqui”, Não permite nada após ".com". 
+
       console.log ("\nE-mail inválido. Formatação incorreta.");
       return true;
    }
       return false; // Se o email for preenchido corretamente, retorna false
  }
+
 
  function cepincorreto (CEP) { // Função que permite salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver nessa formatação: XXXXX-XXX
 
@@ -114,11 +105,13 @@ console.log ("\nNome Completo permite apenas letras.");
 // "|" → Ou uma coisa ou outra, ou seja, ou 5 digitos, um hífen separando, e depois 3 digitos, OU 8 digitos seguidos 
 // "$" → Diz que “a validação termina aqui”, Não permite nada após os 8 digitos 
 //“Começa, depois vem 5 dígitos, um hífen, 3 dígitos OU vêm 8 dígitos seguidos, e termina.”
+
       console.log ("\nCEP inválido. Formatação incorreta.");
       return true; // Se o CEP não tiver a formatação correta, retorna true
    }
       return false; // Se o CEP for preenchido corretamente, retorna false
 }
+
 
 async function buscarcep (CEP){ // Função para buscar o CEP via API e salvar os dados
 const retornodaapi = await fetch(`https://viacep.com.br/ws/${CEP}/json/`) // Espera a internet responder e guarda a resposta em "response"
@@ -127,11 +120,6 @@ const dados = await retornodaapi.json(); // Espera converter a resposta em JSON
 // Utiliza await 2 vezes, pois, buscar e converter levam tempo
 return dados; 
 } 
-
-// fetch → busca algo fora do seu código. 
-// await → espera a internet responder. 
-// retornodaapi.json() → converte para objeto JS. 
-// return dados → entrega o resultado da Promise
 
 
 function cpfincorreto (CPF) { 
@@ -272,6 +260,7 @@ function substituiresalvardado (usuariodigitado, campoescolhido, novodado) { // 
    fs.writeFileSync("Dados_usuarios.json", dados) // Escreve os dados no arquivo Dados_usuarios.json. Salva tudo de volta no arquivo
 
 }
+
 
 function atualizarendereco (usuariodigitado, novocep, novoendereco) {
    const lerarquivo = fs.readFileSync("Dados_usuarios.json", "utf-8")
