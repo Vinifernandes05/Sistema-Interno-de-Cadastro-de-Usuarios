@@ -9,15 +9,15 @@ const {salvarusuario,
        usuarioincorreto, dadoincorreto, validarcampodadousuario, 
        substituiresalvardado, atualizarendereco,
        buscarexcluirusuario, excluirusuario
-       } = require("./Validar_usuarios"); // Pegar as funções "salvarusuario,emailrepetido, nomevazio, emailvazio" que está exportada neste arquivo. O "./" signfica: procurar um arquivo XXX na mesma pasta
-// const {   } = require("./Validar_usuario");
-const rl = readline.createInterface ({ // Cria uma interface de leitura
+       } = require("./Validar_usuarios"); // Direciona as funções que estão sendo exportadas para este arquivo.
+
+       const rl = readline.createInterface ({ // Cria uma interface de leitura
     input: process.stdin, // Define a entrada padrão como o teclado
     output: process.stdout // Define a saída padrão como o console
 })
 
 
-function deletarusuario () {
+function deletarusuario () { // Função que permiti deletar um usuário   
     
     console.log("\n1 - Excluir permanentemente um usuário cadastrado.");
     console.log("2 - Retornar ao menu de opções.");
@@ -60,11 +60,8 @@ function deletarusuario () {
                 break;
         }
 
-
-
             })
 
-        
         })
         break;
 
@@ -72,7 +69,6 @@ function deletarusuario () {
         case"2":
         menulooping();
         break;
-
 
     default: console.log("\nComando Inválido.")
     deletarusuario();
@@ -85,12 +81,11 @@ function deletarusuario () {
 
 function editardadosusuario () { // Função para editar os dados do usuário, permitindo que o usuário escolha qual dado ele quer editar, e salvando as alterações no arquivo JSON
    
-    console.log("\n1 - Editar os dados de um usuário cadastrado."); // Mostra a mensagem de editar os dados de um usuário cadastrado, para o usuário saber que ele está na função de editar os dados do usuário, e não em outra função
-    console.log("2 - Retornar ao menu de opções."); // Mostra a mensagem de retornar ao menu de opções, para o usuário saber que ele pode escolher essa opção para voltar para o menu de opções, e não ficar preso na função de editar os dados do usuário
+    console.log("\n1 - Editar os dados de um usuário cadastrado."); 
+    console.log("2 - Retornar ao menu de opções."); 
 
     rl.question("\nDigite a opção desejada: ", (opcao) => {
 
-    
     switch (opcao) { 
 
         case"1": rl.question("\nDigite a numeração do usuário que deseja editar os dados: ", (usuariodigitado) => {
@@ -104,7 +99,6 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             console.log("3 - CPF"); 
             console.log("4 - CEP");
 
-
             rl.question("\nDigite a numeração do dado que deseja editar: ", (dado) => {
                 if (dadoincorreto(dado)) {
                     editardadosusuario();
@@ -113,7 +107,6 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 
             const campoescolhido = validarcampodadousuario(dado); // Chama a função de validar o campo do dado do usuário que ele deseja editar, para verificar se o número digitado corresponde a um campo existente, e se o campo digitado é válido para ser editado. Exemplo: se digitar 1, tem que ser o "Nome Completo", se digitar 2, tem que ser o "E-mail", e assim por diante. E depois, tem que validar se o dado digitado para substituir aquele campo é válido, ou seja, se for o nome completo, tem que validar com a função nomeincorreto, se for email, tem que validar com a função emailincorreto, e assim por diante. O "campoescolhido" é o valor do campo escolhido pelo usuário para editar, e é usado como parâmetro para a função "editardado", para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário.
             rl.question(`\nDigite a nova informação para substituir o campo "${campoescolhido}" do usuário ${usuariodigitado}: `, async (novodado) => {
-         // rl.question(`\nDigite a nova informação para substituir o campo "${validarcampodadousuario(dado)}: `, (novodado) => { 
              
             if(dado === "1") { // Se o dado escolhido for o nome completo, tem que validar o novo dado com a função de verificar "nomeincorreto", para verificar se o novo dado digitado para substituir o nome completo é válido, ou seja, se não está vazio, ou se não tem números, ou se não tem caracteres especiais, e assim por diante. O "dado" é o número do campo escolhido pelo usuário para editar, e é usado para comparar com as opções de campos existentes, para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para a função de verificar um nome incorreto, para validar se o novo dado digitado para substituir o nome completo é válido, ou seja, se não está vazio, ou se não tem números, ou se não tem caracteres especiais, e assim por diante.
                 if(nomeincorreto(novodado)) { // Se a função de verificar um nome incorreto for true, o programa é encerrado
@@ -122,12 +115,10 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
                 } // Fecha a verificação de que o nome é incorreto, ou seja, se a função de verificar um nome incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 substituiresalvardado(usuariodigitado, campoescolhido, novodado) // Chama a função de substituir o dado do usuário, para substituir o dado antigo pelo novo dado fornecido pelo usuário, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções. O "substituirdado" é a função que faz a substituição do dado antigo pelo novo dado fornecido pelo usuário, e salva as alterações no arquivo JSON, e depois volta para o menu de opções. O "usuariodigitado" é o número do usuário que o usuário digitou para escolher qual usuário ele quer editar os dados, e é usado como parâmetro para a função "substituirdado", para saber qual usuário deve ter os dados editados. O "campoescolhido" é o campo escolhido pelo usuário para editar, e é usado como parâmetro para a função "substituirdado", para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para a função "substituirdado", para substituir o dado antigo pelo novo dado fornecido pelo usuário.
                
-                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, para o usuário saber que a edição foi feita, e depois volta para o menu de opções
-             // console.log(`\nNome Completo do usuário ${usuariodigitado} editado com sucesso!`);
+                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); 
                 editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 return;
              } // Fecha a verificação de que o nome é incorreto, ou seja, se a função de verificar um nome incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
-
 
              if (dado === "2") { // Se o dado escolhido for o e-mail, tem que validar o novo dado com a função de verificar "emailincorreto", para verificar se o novo dado digitado para substituir o e-mail é válido, ou seja, se não está vazio, ou se tem um formato de e-mail válido, e assim por diante. E também tem que validar com a função de verificar "emailrepetido", para verificar se o novo dado digitado para substituir o e-mail já existe no arquivo JSON, ou seja, se já tem um usuário com aquele e-mail cadastrado, para evitar que tenha dois usuários com o mesmo e-mail. O "dado" é o número do campo escolhido pelo usuário para editar, e é usado para comparar com as opções de campos existentes, para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para as funções de verificar um e-mail incorreto e um e-mail repetido, para validar se o novo dado digitado para substituir o e-mail é válido, ou seja, se não está vazio, ou se tem um formato de e-mail válido, e assim por diante, e também para verificar se já tem um usuário com aquele e-mail cadastrado no arquivo JSON.
                 if(emailincorreto(novodado) || emailrepetido(novodado)) { // Se a função de verificar um e-mail incorreto for true, OU se a função de verificar um e-mail repetido for true, o programa é encerrado
@@ -136,12 +127,10 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
                 } // Fecha a verificação de que o e-mail é incorreto ou que o e-mail já existe, ou seja, se a função de verificar um e-mail incorreto for true, OU se a função de verificar um e-mail repetido for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 substituiresalvardado(usuariodigitado, campoescolhido, novodado) // Chama a função de substituir o dado do usuário, para substituir o dado antigo pelo novo dado fornecido pelo usuário, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções. O "substituirdado" é a função que faz a substituição do dado antigo pelo novo dado fornecido pelo usuário, e salva as alterações no arquivo JSON, e depois volta para o menu de opções. O "usuariodigitado" é o número do usuário que o usuário digitou para escolher qual usuário ele quer editar os dados, e é usado como parâmetro para a função "substituirdado", para saber qual usuário deve ter os dados editados. O "campoescolhido" é o campo escolhido pelo usuário para editar, e é usado como parâmetro para a função "substituirdado", para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para a função "substituirdado", para substituir o dado antigo pelo novo dado fornecido pelo usuário.
 
-                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, para o usuário saber que a edição foi feita, e depois volta para o menu de opções
-             // console.log(`\nE-mail do usuário ${usuariodigitado} editado com sucesso!`);
+                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); 
                 editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 return; 
             } // Fecha a verificação de que o e-mail é incorreto ou que o e-mail já existe, ou seja, se a função de verificar um e-mail incorreto for true, OU se a função de verificar um e-mail repetido for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções       
-
 
             if (dado === "3") { // Se o dado escolhido for o CPF, tem que validar o novo dado com a função de verificar "cpfincorreto", para verificar se o novo dado digitado para substituir o CPF é válido, ou seja, se não está vazio, ou se tem um formato de CPF válido, e assim por diante. O "dado" é o número do campo escolhido pelo usuário para editar, e é usado para comparar com as opções de campos existentes, para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para a função de verificar um CPF incorreto, para validar se o novo dado digitado para substituir o CPF é válido, ou seja, se não está vazio, ou se tem um formato de CPF válido, e assim por diante.
                 if (cpfincorreto(novodado)) { // Se a função de verificar um CPF incorreto for true, o programa é encerrado
@@ -150,12 +139,10 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             } // Fecha a verificação de que o CPF é incorreto, ou seja, se a função de verificar um CPF incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 substituiresalvardado(usuariodigitado, campoescolhido, novodado) // Chama a função de substituir o dado do usuário, para substituir o dado antigo pelo novo dado fornecido pelo usuário, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções. O "substituirdado" é a função que faz a substituição do dado antigo pelo novo dado fornecido pelo usuário, e salva as alterações no arquivo JSON, e depois volta para o menu de opções. O "usuariodigitado" é o número do usuário que o usuário digitou para escolher qual usuário ele quer editar os dados, e é usado como parâmetro para a função "substituirdado", para saber qual usuário deve ter os dados editados. O "campoescolhido" é o campo escolhido pelo usuário para editar, e é usado como parâmetro para a função "substituirdado", para saber qual campo do usuário deve ser editado com o novo dado fornecido pelo usuário. O "novodado" é o novo dado fornecido pelo usuário para substituir o dado antigo do campo escolhido, e é usado como parâmetro para a função "substituirdado", para substituir o dado antigo pelo novo dado fornecido pelo usuário.
 
-                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, para o usuário saber que a edição foi feita, e depois volta para o menu de opções
-             // console.log(`\nCPF do usuário ${usuariodigitado} editado com sucesso!`);
+                console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); 
                 editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 return; 
     } // Fecha a verificação de que o CPF é incorreto, ou seja, se a função de verificar um CPF incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
-
 
              if (dado === "4") { // Se o dado escolhido for o CEP, tem que validar o novo dado com a função de verificar "cepincorreto", para verificar se o novo dado digitado para substituir o CEP é válido, ou seja, se não está vazio, ou se tem um formato de CEP válido, e assim por diante. 
                 if (cepincorreto(novodado)) { // Se a função de verificar um CEP incorreto for true, o programa é encerrado
@@ -165,7 +152,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 
              const dadoscep = await buscarcep(novodado) // Se o dado escolhido for o CEP, tem que buscar os dados de endereço do novo CEP fornecido pelo usuário, para atualizar os dados de endereço do usuário, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções. O "dadoscep" é o valor retornado pela função "buscarcep", que são os dados de endereço do novo CEP fornecido pelo usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "buscarcep" é a função que faz a requisição para a API ViaCEP, e retorna os dados de endereço do novo CEP fornecido pelo usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "novodado" é o novo CEP fornecido pelo usuário para substituir o dado antigo do campo CEP, e é usado como parâmetro para a função "buscarcep", para fazer a requisição para a API ViaCEP com o novo CEP fornecido pelo usuário.
              if(!dadoscep) { // Se a função de buscar o CEP na API ViaCEP retornar um erro, ou seja, se o "dadoscep" for falso, mostra a mensagem de que o CEP não foi encontrado, e volta para o menu de opções, para o usuário digitar um CEP válido ou escolher outra opção. O "dadoscep" é o valor retornado pela função "buscarcep", que são os dados de endereço do novo CEP fornecido pelo usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "buscarcep" é a função que faz a requisição para a API ViaCEP, e retorna os dados de endereço do novo CEP fornecido pelo usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "novodado" é o novo CEP fornecido pelo usuário para substituir o dado antigo do campo CEP, e é usado como parâmetro para a função "buscarcep", para fazer a requisição para a API ViaCEP com o novo CEP fornecido pelo usuário.
-                console.log("CEP não encontrado."); // Se a resposta da API ViaCEP tiver a propriedade "erro", mostra essa mensagem de que o CEP não foi encontrado, para o usuário saber que o CEP digitado é inválido, e tem que digitar um CEP válido ou escolher outra opção
+                console.log("CEP não encontrado."); 
                 editardadosusuario(); // Depois de mostrar a mensagem de que o CEP não foi encontrado, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro dado para editar ou voltar para o menu de opções
                 return;
             } // Fecha a verificação de que o CEP não foi encontrado, ou seja, se a função de buscar o CEP na API ViaCEP retornar um erro, ou seja, se o "dadoscep" for falso, mostra a mensagem de que o CEP não foi encontrado, e volta para o menu de opções, para o usuário digitar um CEP válido ou escolher outra opção
@@ -173,7 +160,6 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             atualizarendereco(usuariodigitado, novodado, dadoscep) // Atualiza o CEP, e, consequentemente A Rua, Bairro, Cidade e Estado, a partir da busca do CEP.
 
             console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); 
-         // console.log(`\nCEP do usuário ${usuariodigitado} editado com sucesso!`);
             editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções
             return;
 
@@ -187,7 +173,6 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
         menulooping(); // Chama a função de mostrar o menu de opções, para o usuário escolher outra opção ou sair do programa
              break;
 
-        
         default: console.log("\nComando Inválido.") // Se o usuário digitar uma opção que não existe, mostra essa mensagem de comando inválido
         editardadosusuario(); 
             
@@ -200,14 +185,13 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 function menulooping () { // Função para mostrar o menu de opções para o usuário, e permitir que ele escolha o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa. O "looping" é para mostrar o menu de opções novamente, depois que o usuário escolher uma opção, para ele poder escolher outra opção ou sair do programa.
 
 // Inserção das opções do menu, para o usuario decidir o que quer fazer com base no digito.
-    console.log("\n1 - Cadastrar Usuário"); // Mostra a opção 1 para o usuário, para ele escolher se quer cadastrar um usuário
-    console.log("2 - Listar Usuários"); // Mostra a opção 2 para o usuário, para ele escolher se quer listar os usuários cadastrados
-    console.log("3 - Sair"); // Mostra a opção 3 para o usuário, para ele escolher se quer sair do programa
-    console.log("4 - Editar os dados de um Usuário"); // Mostra a opção 4 para o usuário, para ele escolher se quer editar os dados de um usuário cadastrado
-    console.log("5 - Excluir um Usuário"); // Mostra a opção 5 para o usuário, para ele escolher se quer excluir um usuário cadastrado
+    console.log("\n1 - Cadastrar Usuário"); 
+    console.log("2 - Listar Usuários"); 
+    console.log("3 - Sair"); 
+    console.log("4 - Editar os dados de um Usuário"); 
+    console.log("5 - Excluir um Usuário"); 
 
     rl.question ("\nDigite a opção desejada: ", (opcao) => { // Faz a pergunta para o usuário, e espera a resposta. O "opcao" é o que o usuário digitou, e é usado para comparar com as opções do menu, para saber qual opção o usuário escolheu. O "question" é para fazer a pergunta, e o "callback" é para esperar a resposta do usuário, e depois executar a função que está dentro do callback, que é onde tem a lógica para cada opção escolhida pelo usuário.
- // rl.question("Pergunta", (RESPOSTA) => {
 
        switch (opcao) { 
 
@@ -218,7 +202,7 @@ function menulooping () { // Função para mostrar o menu de opções para o usu
                         menudetalhesusuarios(); // Depois de listar os usuários, mostra o menu de detalhes, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções
              break; 
           
-          case "3": console.log ("\nSaindo..."); // Mostra a mensagem de saindo, para o usuário saber que o programa está sendo encerrado
+          case "3": console.log ("\nSaindo..."); 
           rl.close(); // Encerra a interface de leitura, para o programa ser encerrado de fato, e não ficar esperando o usuário digitar algo
              break;
 
@@ -230,8 +214,7 @@ function menulooping () { // Função para mostrar o menu de opções para o usu
                         deletarusuario(); // Chama a função de excluir um usuário, para o usuário escolher qual usuário quer excluir, e depois confirmar a exclusão, e depois voltar para o menu de opções
              break;
 
-          default: console.log("\nComando Inválido.") // Se o usuário digitar uma opção que não existe, mostra essa mensagem de comando inválido
-          menulooping(); // Depois de mostrar a mensagem de comando inválido, mostra o menu de opções novamente, para o usuário escolher uma opção válida ou sair do programa
+          default: console.log("\nComando Inválido.") 
        } // Fecha o switch do menu de opções, para o usuário escolher o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
     
 }) // Fecha a pergunta do menu de opções, para o usuário escolher o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
@@ -239,8 +222,8 @@ function menulooping () { // Função para mostrar o menu de opções para o usu
 
 function menudetalhesusuarios() { // Função para mostrar o menu de detalhes dos usuários, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções, e depois voltar para o menu de opções
 
-   console.log("\n1 - Visualizar mais detalhes dos usuarios."); // Mostra a opção 1 para o usuário, para ele escolher se quer ver mais detalhes de algum usuário cadastrado, e depois voltar para o menu de opções
-   console.log("2 - Retornar ao menu de opções."); // Mostra a opção 2 para o usuário, para ele escolher se quer voltar para o menu de opções, e depois mostrar o menu de opções novamente, para ele escolher outra opção ou sair do programa
+   console.log("\n1 - Visualizar mais detalhes dos usuarios."); 
+   console.log("2 - Retornar ao menu de opções.");
 
 rl.question ("\nDigite a opção desejada: ", (opcao) => { 
 
@@ -257,7 +240,7 @@ rl.question ("\nDigite a opção desejada: ", (opcao) => {
         menulooping(); // Chama a função de mostrar o menu de opções, para o usuário escolher outra opção ou sair do programa
         break;
 
-        default: console.log("\nComando Inválido.") // Se o usuário digitar uma opção que não existe, mostra essa mensagem de comando inválido
+        default: console.log("\nComando Inválido.") 
         menudetalhesusuarios(); // Depois de mostrar a mensagem de comando inválido, mostra o menu de detalhes dos usuários novamente, para o usuário escolher uma opção válida ou voltar para o menu de opções
 
      } // Fecha o switch do menu de detalhes dos usuários
@@ -315,10 +298,10 @@ rl.question ("Digite seu CEP: ", (CEP) => {
 console.log("Obrigado por fornecer suas informações! Aguarde um momento, estamos verificando no nosso Banco de Dados..."); 
 
     buscarcep(CEP) // Chama a função de buscar o CEP na API ViaCEP, para pegar os dados de endereço do usuário, e depois salvar o usuário no arquivo JSON, e depois voltar para o menu de opções. O "buscarcep" é a função que faz a requisição para a API ViaCEP, e retorna os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "CEP" é o valor do CEP que o usuário digitou, e é usado como parâmetro para a função "buscarcep", para fazer a requisição para a API ViaCEP com o CEP fornecido pelo usuário.
-    .then((dados) => { // Trata a resposta da função "buscarcep", que é uma promessa (promise), e espera a resposta da API ViaCEP, para pegar os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "dados" é o valor retornado pela função "buscarcep", que pode ser os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "then" é para tratar a resposta da promessa, e executar a função que está dentro do "then", que é onde tem a lógica para pegar os dados de endereço do usuário, ou mostrar a mensagem de erro se o CEP for inválido ou se houver algum problema com a requisição.
+    .then((dados) => { // Trata a resposta da função "buscarcep" e espera a resposta da API ViaCEP, para pegar os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "dados" é o valor retornado pela função "buscarcep", que pode ser os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "then" é para tratar a resposta da promessa, e executar a função que está dentro do "then", que é onde tem a lógica para pegar os dados de endereço do usuário, ou mostrar a mensagem de erro se o CEP for inválido ou se houver algum problema com a requisição.
 
         if (dados.erro) { // Verifica se a resposta da API ViaCEP tem a propriedade "erro", que indica que o CEP é inválido. Se tiver a propriedade "erro", mostra a mensagem de que o CEP não foi encontrado, e volta para o menu de opções, para o usuário digitar um CEP válido ou escolher outra opção.
-            console.log("CEP não encontrado."); // Se a resposta da API ViaCEP tiver a propriedade "erro", mostra essa mensagem de que o CEP não foi encontrado, para o usuário saber que o CEP digitado é inválido, e tem que digitar um CEP válido ou escolher outra opção
+            console.log("CEP não encontrado."); 
             menulooping(); // Depois de mostrar a mensagem de que o CEP não foi encontrado, mostra o menu de opções novamente, para o usuário escolher uma opção válida ou sair do programa
             return;
         } // Fecha a verificação de erro da resposta da API ViaCEP
@@ -328,12 +311,12 @@ console.log("Obrigado por fornecer suas informações! Aguarde um momento, estam
         usuario.Cidade = dados.localidade;  // Atribuo a minha identificação de Cidade igual ao da API ViaCEP, que se chama de "localidade"
         usuario.Estado = dados.uf;  // Atribuo a minha identificação de Estado igual ao da API ViaCEP, que se chama de "uf"
 
-        salvarusuario(usuario); // Chama a função de salvar o usuário no arquivo JSON, para salvar o novo usuário cadastrado, e depois voltar para o menu de opções. O "salvarusuario" é a função que salva o usuário no arquivo JSON, e depois volta para o menu de opções. O "usuario" é o objeto que contém os dados do usuário fornecidos, e é usado como parâmetro para a função "salvarusuario", para salvar o novo usuário no arquivo JSON.
+        salvarusuario(usuario); // Chama a função de salvar o usuário no arquivo JSON, para salvar o novo usuário cadastrado. O "salvarusuario" é a função que salva o usuário no arquivo JSON, e depois volta para o menu de opções. O "usuario" é o objeto que contém os dados do usuário fornecidos, e é usado como parâmetro para a função "salvarusuario", para salvar o novo usuário no arquivo JSON.
         menulooping() // Depois de salvar o usuário no arquivo JSON, mostra o menu de opções novamente, para o usuário escolher outra opção ou sair do programa
     }) // Fecha o tratamento da resposta da função "buscarcep"
 
     .catch((erro) => { // Trata/Resolve erros de falhas de internet/API fora do ar. O "erro" dentro, mostra o erro real que acontece, o verdadeiro diagnostico
-        console.log("Erro ao consultar o CEP.", erro); // Se acontecer algum erro na requisição para a API ViaCEP, mostra essa mensagem de erro ao consultar o CEP, e mostra o erro real que aconteceu, para o usuário saber que houve um problema com a requisição, e tem que tentar novamente ou escolher outra opção
+        console.log("Erro ao consultar o CEP.", erro); 
         menulooping(); // Depois de mostrar a mensagem de erro ao consultar o CEP, mostra o menu de opções novamente, para o usuário escolher outra opção ou sair do programa
     }); // Fecha o tratamento de erros da função "buscarcep"
 
