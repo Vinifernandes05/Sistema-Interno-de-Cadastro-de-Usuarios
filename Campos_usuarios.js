@@ -200,23 +200,33 @@ function menulooping () { // Função para mostrar o menu de opções para o usu
           case "1": cadastrodeusuarios(); // Chama a função de cadastro de usuários, para o usuário fornecer os dados e cadastrar um novo usuário, e depois voltar para o menu de opções
              break;
           
-          case "2": listarusuarios(); // Chama a função de listar os usuários, para mostrar os usuários cadastrados, e depois mostrar o menu de detalhes, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções
-                        menudetalhesusuarios(); // Depois de listar os usuários, mostra o menu de detalhes, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções
-             break; 
+          case "2": if(listarusuarios()) { // Chama a função de listar os usuários, para mostrar os usuários cadastrados, e depois mostrar o menu de detalhes, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções
+                        menudetalhesusuarios()
+                    } else {
+                        menulooping();
+                    }
+                    break; 
           
           case "3": console.log ("\nSaindo..."); 
           rl.close(); // Encerra a interface de leitura, para o programa ser encerrado de fato, e não ficar esperando o usuário digitar algo
              break;
 
-          case "4": listarusuarios(); // Mostra a lsita dos usuarios, apra depois ele selecionar qual usuario quer editar o dado ou se quer retornar ao menu
-                        editardadosusuario(); // Chama a função de alterar os dados do usuário, para o usuário escolher qual usuário quer editar, e depois escolher qual dado quer editar, e depois fornecer o novo dado, e depois voltar para o menu de opções 
-             break;
+          case "4": if(listarusuarios()) { // Mostra a lsita dos usuarios, apra depois ele selecionar qual usuario quer editar o dado ou se quer retornar ao menu
+                        editardadosusuario() // Chama a função de alterar os dados do usuário, para o usuário escolher qual usuário quer editar, e depois escolher qual dado quer editar, e depois fornecer o novo dado, e depois voltar para o menu de opções
+                    }  else {
+                        menulooping();
+                    }
+                    break;
             
-          case "5": listarusuarios();
-                        deletarusuario(); // Chama a função de excluir um usuário, para o usuário escolher qual usuário quer excluir, e depois confirmar a exclusão, e depois voltar para o menu de opções
+          case "5": if(listarusuarios()) {
+                        deletarusuario() // Chama a função de excluir um usuário, para o usuário escolher qual usuário quer excluir, e depois confirmar a exclusão, e depois voltar para o menu de opções
+                    } else {
+                        menulooping();
+                    }
              break;
 
           default: console.log("\nComando Inválido.") 
+          menulooping();
        } // Fecha o switch do menu de opções, para o usuário escolher o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
     
 }) // Fecha a pergunta do menu de opções, para o usuário escolher o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
@@ -297,13 +307,13 @@ rl.question ("Digite seu CEP: ", (CEP) => {
         
             }; // Fecha o objeto usuario
 
-console.log("Obrigado por fornecer suas informações! Aguarde um momento, estamos verificando no nosso Banco de Dados..."); 
+console.log("\nObrigado por fornecer suas informações! Aguarde um momento, estamos verificando no nosso Banco de Dados..."); 
 
     buscarcep(CEP) // Chama a função de buscar o CEP na API ViaCEP, para pegar os dados de endereço do usuário, e depois salvar o usuário no arquivo JSON, e depois voltar para o menu de opções. O "buscarcep" é a função que faz a requisição para a API ViaCEP, e retorna os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "CEP" é o valor do CEP que o usuário digitou, e é usado como parâmetro para a função "buscarcep", para fazer a requisição para a API ViaCEP com o CEP fornecido pelo usuário.
     .then((dados) => { // Trata a resposta da função "buscarcep" e espera a resposta da API ViaCEP, para pegar os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "dados" é o valor retornado pela função "buscarcep", que pode ser os dados de endereço do usuário, ou um erro se o CEP for inválido ou se houver algum problema com a requisição. O "then" é para tratar a resposta da promessa, e executar a função que está dentro do "then", que é onde tem a lógica para pegar os dados de endereço do usuário, ou mostrar a mensagem de erro se o CEP for inválido ou se houver algum problema com a requisição.
 
         if (dados.erro) { // Verifica se a resposta da API ViaCEP tem a propriedade "erro", que indica que o CEP é inválido. Se tiver a propriedade "erro", mostra a mensagem de que o CEP não foi encontrado, e volta para o menu de opções, para o usuário digitar um CEP válido ou escolher outra opção.
-            console.log("CEP não encontrado."); 
+            console.log("\nCEP não encontrado."); 
             menulooping(); // Depois de mostrar a mensagem de que o CEP não foi encontrado, mostra o menu de opções novamente, para o usuário escolher uma opção válida ou sair do programa
             return;
         } // Fecha a verificação de erro da resposta da API ViaCEP
@@ -318,7 +328,7 @@ console.log("Obrigado por fornecer suas informações! Aguarde um momento, estam
     }) // Fecha o tratamento da resposta da função "buscarcep"
 
     .catch((erro) => { // Trata/Resolve erros de falhas de internet/API fora do ar. O "erro" dentro, mostra o erro real que acontece, o verdadeiro diagnostico
-        console.log("Erro ao consultar o CEP.", erro); 
+        console.log("\nErro ao consultar o CEP.", erro); 
         menulooping(); // Depois de mostrar a mensagem de erro ao consultar o CEP, mostra o menu de opções novamente, para o usuário escolher outra opção ou sair do programa
     }); // Fecha o tratamento de erros da função "buscarcep"
 

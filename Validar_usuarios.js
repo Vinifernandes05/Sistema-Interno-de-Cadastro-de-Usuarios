@@ -6,24 +6,19 @@ const fs = require("fs"); // Importa o módulo de sistema de arquivos
             let usuarios = []; // Cria um array vazio para armazenar os outros usuários, para nao sobescrever os dados toda vez que rodar o programa novamente
 
             if (fs.existsSync ("Dados_usuarios.json")) { // Verifica se o arquivo Dados_usuarios.json já existe
-
              const conteudo = fs.readFileSync ("Dados_usuarios.json", "utf-8"); // Lê o arquivo para verificar se os dados foram salvos corretamente, "utf-8" é a forma de interpretação
-                           // fs.readFileSync( caminhoDoArquivo, COMO_EU_QUERO_LER )
-
              usuarios = JSON.parse(conteudo) // Transforma a string JSON em um objeto JS. Agora "usuarios" contém os usuarios antigos. String → Objeto. JSON -> JS
             }
 // Se o rquivo existir, ele lê o conteúdo e transofmra JSON -> JS. Se ele não existir, o "usuarios" continua sendo [], ou seja, um array vazio, e da o push
+
              usuarios.push (usuario); // Adiciona o usuario dentro da lista, do array usuarios, sem sobrescrever nem apagar os dados antigos
-
-                const dados = JSON.stringify(usuarios, null, 2); // Transforma o array "usuarios" em uma string JSON. Objeto → String. JS -> JSON
-
-                  fs.writeFileSync ("Dados_usuarios.json", dados) // Escreve os dados no arquivo Dados_usuarios.json. Salva tudo de volta no arquivo
-               // fs.writeFileSync( caminhoDoArquivo, O_QUE_VAI_SER_ESCRITO )
-               console.log("Dados salvos com sucesso.")
+             const dados = JSON.stringify(usuarios, null, 2); // Transforma o array "usuarios" em uma string JSON. Objeto → String. JS -> JSON
+             fs.writeFileSync ("Dados_usuarios.json", dados) // Escreve os dados no arquivo Dados_usuarios.json. Salva tudo de volta no arquivo
+                  console.log("\nDados salvos com sucesso.")
         }
 
 
-      function emailrepetido (email) { // Função que não permite salvar um mesmo e-mail que já está inserido no sistema
+function emailrepetido (email) { // Função que não permite salvar um mesmo e-mail que já está inserido no sistema
    let usuarios = [] // Cria um array vazio de usuarios, uma lsita vazia
    if (fs.existsSync("Dados_usuarios.json")) { // Verifica se o arquivo Dados_usuarios.json já existe
       const conteudo = fs.readFileSync("Dados_usuarios.json", "utf-8"); // Lê o arquivo para verificar se os dados foram salvos corretamente, "utf-8" é a forma de interpretação
@@ -38,12 +33,11 @@ const fs = require("fs"); // Importa o módulo de sistema de arquivos
       }                 
    }
     return false; // Se o email não tiver cadastrado, ou seja, for um email novo, retorna false
-// Inserir no código o "return false;" após o fechamento das chaves do "for", pois, ele tem que verificar todos os email, e não so o primeiro. pois não sabemos qual a ordem do usuario que está com o email igual
-   
+// Inserir no código o "return false;" após o fechamento das chaves do "for", pois, ele tem que verificar todos os email, e não so o primeiro. pois não sabemos qual a ordem do usuario que está com o email igual 
 }
 
 
- function nomeincorreto (nomecompleto) { // Função que não permite que o campo "Nome Completo" fique com espaços em branco/ENTER
+function nomeincorreto (nomecompleto) { // Função que não permite que o campo "Nome Completo" fique com espaços em branco/ENTER
    if (nomecompleto.trim() === "" ) { // Condição de se o nome for em branco, ele da uma mensagem de erro e não salva. O ".trim()" remove os espaços do começo e do fim da string " " e o enter
       console.log("\nNome Completo inválido.");
       return true; // Se o nome nao for preenchido, retorna true
@@ -67,7 +61,7 @@ console.log ("\nNome Completo permite apenas letras.");
 }
 
 
- function emailincorreto (email) { // Função que não permite que o campo "E-mail" fique com espaços em branco/ENTER
+function emailincorreto (email) { // Função que não permite que o campo "E-mail" fique com espaços em branco/ENTER
    if (email.trim() === "" ) { // Condição de não deixa o usuario cadastrar o email em branco. O "".trim()"" remove os espaços do começo e do fim da string " " e o enter
       console.log("\nE-mail inválido.");
       return true; // Se o email não for preenchido, retorna true
@@ -94,7 +88,7 @@ console.log ("\nNome Completo permite apenas letras.");
  }
 
 
- function cepincorreto (CEP) { // Função que permite salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver nessa formatação: XXXXX-XXX
+function cepincorreto (CEP) { // Função que permite salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver nessa formatação: XXXXX-XXX
 
    if(!/^(\d{5}-\d{3}|\d{8})$/.test(CEP)) { // Condição de permitir até 8 digitos numericos no CEP (00213254 OU 09278-921, sem hífem ou com)
 // "/ ... /" → Indicam que isso é uma expressão regular (Regex). Tudo que está entre as barras é a regra de validação
@@ -141,12 +135,17 @@ function cpfincorreto (CPF) {
 
 function listarusuarios () { // Função para listar os usuários cadastrados, mostrando o nome completo, email, cidade e estado
 let usuarios = [] // Se o arquivo não existir ou estiver vazio, pelo menos usuarios existe. Se o arquivo existe, ele vem do JSON, se não existir, fica vazio
+
 if (fs.existsSync ("Dados_usuarios.json")) { // Verifica se o arquivo existe
    const conteudodoaquivo = fs.readFileSync ("Dados_usuarios.json", "utf-8") // Lê o arquivo JSON
    usuarios = JSON.parse(conteudodoaquivo) // Transforma o conteudo de JSON -> JS
+}
+
    if (usuarios.length === 0) { // Verifica se o array esta vazio, ou seja, se existe conteudo dentro do array. Essa é a forma certe de verificar se esta vazio ou não
       console.log("\nNenhum usuário cadastrado.") // Se o array estiver vazio, ou seja, se não tiver nenhum usuário cadastrado, mostra essa mensagem
-   } else {
+      return false;
+   } 
+   
       for (let i = 0; i < usuarios.length; i ++) { // Percorre o tamanho do array completo
       console.log (`\nUsuário ${i + 1}`); // Enumera os ususarios um por um
       console.log("Nome Completo: ", usuarios[i]["Nome Completo"]); // Usa essa formatação por causa do espaço que tem "Nome Completo"
@@ -154,9 +153,9 @@ if (fs.existsSync ("Dados_usuarios.json")) { // Verifica se o arquivo existe
       console.log("Cidade: ", usuarios[i].Cidade); // Usa essa formatação por causa de não ter espaço nem simbolo, então é só usar o ponto mesmo "Cidade"
       console.log("Estado: ", usuarios[i].Estado); // Usa essa formatação por causa de não ter espaço nem simbolo, então é só usar o ponto mesmo "Estado"
    } // Fecha o loop que percorre o array de usuários, mostrando os dados um por um
+   return true;
 } // Fecha a verificação de se o arquivo existe
-} // Se o arquivo não existir, ou seja, se não tiver nenhum usuário cadastrado, o "usuarios" fica vazio, e mostra a mensagem de nenhum usuário cadastrado
-} // Fecha a função de listar os usuários cadastrados, mostrando o nome completo, email, cidade e estado
+
 
 function detalhesusuarios(numerodigitado) { // Função para mostrar os detalhes do usuário, mostrando todos os dados fornecidos, inclusive o endereço completo
   let usuarios = [] // Se o arquivo não existir ou estiver vazio, pelo menos usuarios existe. Se o arquivo existe, ele vem do JSON, se não existir, fica vazio
@@ -222,6 +221,7 @@ function usuarioincorreto (usuariodigitado) { // Função para validar o número
       }
       return false; // Se o usuário digitar um número que corresponde a um usuário cadastrado, retorna false
 } 
+
 
 function dadoincorreto (dado){ // Função para validar o campo do dado do usuário que ele deseja editar, verificando se o número digitado corresponde a um campo existente, e se o campo digitado é válido para ser editado. Exemplo: se digitar 1, tem que ser o "Nome Completo", se digitar 2, tem que ser o "E-mail", e assim por diante.
    if(!/^[1-8]$/.test(dado)) { 
