@@ -1,9 +1,10 @@
 # Sistema Interno de Cadastro de Usuários
-Este projeto consiste em um sistema interno de cadastro de usuários desenvolvido em JavaScript (Node.js). O sistema permite cadastrar, listar, editar e excluir usuários, armazenando os dados em um arquivo JSON local. O endereço do usuário (Rua, Bairro, Cidade e Estado) é preenchido automaticamente a partir do CEP informado, utilizando a API pública "ViaCEP".
+Este projeto consiste em um sistema interno de cadastro de usuários desenvolvido em JavaScript (Node.js). O sistema permite gerenciar infomrações, cadastrar, listar, editar e excluir usuários via terminal, armazenando os dados em um arquivo JSON (Dados_usuarios.json). O endereço do usuário (Rua, Bairro, Cidade e Estado) é preenchido automaticamente a partir do CEP informado, utilizando a API pública "ViaCEP".
 
 ## Tecnologias Utilizadas
 
-- JavaScript (Node.js)
+- Node.js
+- JavaScript
 - JSON para persistência de dados
 - API pública ViaCEP
 
@@ -30,7 +31,7 @@ Sistema-Interno-de-Cadastro-de-Usuarios/
    cd Sistema-Interno-de-Cadastro-de-Usuarios
 
 4. Executar o sistema:
-   Abra o terminal e digite "node Campos_usuarios.js"
+   node Campos_usuarios.js 
 
 ## API Utilizada
 
