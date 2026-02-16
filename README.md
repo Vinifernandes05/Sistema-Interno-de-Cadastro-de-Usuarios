@@ -24,7 +24,7 @@ Sistema-Interno-de-Cadastro-de-Usuarios/
    <https://nodejs.org/pt-br>
    
 2. Clonar o repositório:
-   git clone <link-do-repositorio>
+   git clone <https://github.com/Vinifernandes05/Sistema-Interno-de-Cadastro-de-Usu-rios.git>
 
 3. Acessar a pasta do projeto:
    cd Sistema-Interno-de-Cadastro-de-Usuarios
