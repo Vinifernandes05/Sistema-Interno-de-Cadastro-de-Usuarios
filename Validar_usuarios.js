@@ -223,19 +223,14 @@ function usuarioincorreto (usuariodigitado) { // Função para validar o número
 } 
 
 
-function dadoincorreto (dado){ // Função para validar o campo do dado do usuário que ele deseja editar, verificando se o número digitado corresponde a um campo existente, e se o campo digitado é válido para ser editado. Exemplo: se digitar 1, tem que ser o "Nome Completo", se digitar 2, tem que ser o "E-mail", e assim por diante.
-   if(!/^[1-8]$/.test(dado)) { 
-   // "/ ... /" → Indicam que isso é uma expressão regular (Regex). Tudo que está entre as barras é a regra de validação
-   // "^" → Começo da string, impede caracteres antes do padrão
-   // "[ ]" → Para escolher caracteres permitidos.
-   // "1-8" → Permite apenas os números de 1 a 8, ou seja, os campos que o usuário pode escolher para editar. O número 8 é para o campo "Estado", que é o último campo do usuário, e o número 1 é para o campo "Nome Completo", que é o primeiro campo do usuário. Se digitar um número menor que 1 ou maior que 8, ou um caractere que não seja número, a função vai dar true, ou seja, vai mostrar a mensagem de erro e pedir para digitar novamente.
-   // "$" → Diz que “a validação termina aqui”, Não permite nada após o número digitado.
+function dadoincorreto(dado){ // Função para validar o dígito correto para o campo de editar o dado de um usuário
 
-      console.log("\nErro de formatação. Digite apenas o número correspondente ao dado que deseja editar."); // Se o usuário digitar algo diferente de um número entre 1 e 8, mostra essa mensagem de erro
-      return true; // Se o usuário digitar algo diferente de um número entre 1 e 8, retorna true
+   if (!/^[1-4]$/.test(dado)) { // Permite somente um dígito númerico entre 1 e 4, correspondente ao Nome Completo, E-mail, CPF e CEP
+      console.log("\nDigite apenas a numeração do dado que deseja editar.");
+      return true
    }
-   return false; // Se o usuário digitar um número entre 1 e 8, retorna false
-} 
+   return false;
+}
 
 
 function validarcampodadousuario (campodigitado) { // Função para validar o campo do dado do usuário que ele deseja editar, verificando se o número digitado corresponde a um campo existente, e se o campo digitado é válido para ser editado. Exemplo: se digitar 1, tem que ser o "Nome Completo", se digitar 2, tem que ser o "E-mail", e assim por diante.  
@@ -304,6 +299,7 @@ if(!usuario[indice]) {
       }
    return false;
 }
+
 
 function excluirusuario (usuariodigitado) {
    const leraquivo = fs.readFileSync("Dados_usuarios.json", "utf-8")

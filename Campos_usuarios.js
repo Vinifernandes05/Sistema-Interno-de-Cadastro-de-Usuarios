@@ -94,7 +94,8 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             
             if (usuarioincorreto(usuariodigitado)) { // Se a função de verificar um usuário incorreto for true, o programa é encerrado 
                 editardadosusuario(); // Depois de mostrar a mensagem de que o usuário é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
-            } // Fecha a verificação de que o usuário é incorreto, ou seja, se a função de verificar um usuário incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
+                return; } 
+                // Fecha a verificação de que o usuário é incorreto, ou seja, se a função de verificar um usuário incorreto for true, o programa é encerrado, e depois mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
 
             console.log("\n1 - Nome Completo"); // O número "1" corresponde a "Nome Completo"
             console.log("2 - E-mail"); // O número "2" corresponde a "E-mail"
@@ -102,6 +103,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             console.log("4 - CEP"); // O número "4" corresponde a "CEP"
 
             rl.question("\nDigite a numeração do dado que deseja editar: ", (dado) => {
+
                 if (dadoincorreto(dado)) {
                     editardadosusuario();
                     return;
