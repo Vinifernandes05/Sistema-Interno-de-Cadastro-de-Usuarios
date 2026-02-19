@@ -253,7 +253,6 @@ function substituiresalvardado (usuariodigitado, campoescolhido, novodado) { // 
    
    const dados = JSON.stringify(usuarios, null, 2) 
    fs.writeFileSync("Dados_usuarios.json", dados) // Escreve os dados no arquivo Dados_usuarios.json. Salva tudo de volta no arquivo
-
 }
 
 

@@ -77,7 +77,6 @@ function deletarusuario () { // Função que permiti deletar um usuário
     return;
     }
     })
-
 }
 
 
@@ -164,8 +163,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             atualizarendereco(usuariodigitado, novodado, dadoscep) // Atualiza o CEP, e, consequentemente A Rua, Bairro, Cidade e Estado, a partir da busca do CEP.
 
             console.log(`\n${campoescolhido} do usuário ${usuariodigitado} editado com sucesso!`); 
-            editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções
-            return;
+            editardadosusuario(); // Depois de editar o dado do usuário, mostra a mensagem de que o dado foi editado com sucesso, e depois volta para a função de editar os dados do usuário, para o usuário escolher outro dado para editar ou voltar para o menu de opções            return;
 
     } // Fecha o switch do dado escolhido para editar, para o usuário escolher qual dado quer editar, e depois fornecer o novo dado para substituir o dado antigo do campo escolhido do usuário selecionado, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções    
         }) // Fecha a pergunta de selecionar a numeração do dado que deseja editar, e a pergunta de digitar a nova informação para substituir o campo escolhido do usuário selecionado, para o usuário escolher qual dado quer editar, e fornecer o novo dado para substituir o dado antigo do campo escolhido do usuário selecionado, e depois salvar as alterações no arquivo JSON, e depois voltar para o menu de opções
@@ -186,6 +184,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
          
 } // Fecha a função de editar os dados do usuário, permitindo que o usuário escolha qual dado ele quer editar, e salvando as alterações no arquivo JSON
     
+
 function menulooping () { // Função para mostrar o menu de opções para o usuário, e permitir que ele escolha o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa. O "looping" é para mostrar o menu de opções novamente, depois que o usuário escolher uma opção, para ele poder escolher outra opção ou sair do programa.
 
 // Inserção das opções do menu, para o usuario decidir o que quer fazer com base no digito.
@@ -234,6 +233,7 @@ function menulooping () { // Função para mostrar o menu de opções para o usu
 }) // Fecha a pergunta do menu de opções, para o usuário escolher o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
 } // Fecha a função de mostrar o menu de opções para o usuário, e permitir que ele escolha o que quer fazer, e depois voltar para o menu de opções, para escolher outra opção ou sair do programa
 
+
 function menudetalhesusuarios() { // Função para mostrar o menu de detalhes dos usuários, para o usuário escolher se quer ver mais detalhes de algum usuário ou voltar para o menu de opções, e depois voltar para o menu de opções
 
    console.log("\n1 - Visualizar mais detalhes dos usuarios."); 
@@ -262,6 +262,7 @@ rl.question ("\nDigite a opção desejada: ", (opcao) => {
 } // Fecha a pergunta do menu de detalhes dos usuários
    ) // Fecha a pergunta do menu de detalhes dos usuários
 } // Fecha a função de menu de detalhes dos usuários
+
 
 function cadastrodeusuarios() { // Função para cadastrar um novo usuário, fazendo as perguntas para o usuário fornecer os dados, e depois salvar o usuário no arquivo JSON, e depois voltar para o menu de opções
 rl.question ("\nDigite seu Nome Completo: ", (nomecompleto) => {
