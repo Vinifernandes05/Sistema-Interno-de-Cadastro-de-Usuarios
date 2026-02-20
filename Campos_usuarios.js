@@ -17,7 +17,7 @@ const {salvarusuario,
 })
 
 
-function deletarusuario () { // Função que permiti deletar um usuário   
+function deletarusuario () { // Função que permiti deletar um usuário
     
     console.log("\n1 - Excluir permanentemente um usuário cadastrado.");
     console.log("2 - Retornar ao menu de opções.");
