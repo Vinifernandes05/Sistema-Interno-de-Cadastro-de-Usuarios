@@ -1,5 +1,5 @@
 // Arquivo de interação com o usuário, perguntas...
-const readline = require ("readline"); // Importa o módulo readline para ler entrada do usuário
+const readline = require ("readline"); // Importa o módulo readline para ler entrada do usuário.
 const {salvarusuario,
        nomeincorreto, 
        emailincorreto, emailrepetido, 
@@ -11,13 +11,13 @@ const {salvarusuario,
        buscarexcluirusuario, excluirusuario
        } = require("./Validar_usuarios"); // Direciona as funções que estão sendo exportadas para este arquivo.
 
-       const rl = readline.createInterface ({ // Cria uma interface de leitura
-    input: process.stdin, // Define a entrada padrão como o teclado
-    output: process.stdout // Define a saída padrão como o console
+       const rl = readline.createInterface ({ // Cria uma interface de leitura.
+    input: process.stdin, // Define a entrada padrão como o teclado.
+    output: process.stdout // Define a saída padrão como o console.
 })
 
 
-function deletarusuario () { // Função que permiti deletar um usuário
+function deletarusuario () { // Função que permiti deletar um usuário. 
     
     console.log("\n1 - Excluir permanentemente um usuário cadastrado.");
     console.log("2 - Retornar ao menu de opções.");
@@ -78,7 +78,7 @@ function deletarusuario () { // Função que permiti deletar um usuário
 }
 
 
-function editardadosusuario () { // Função para editar os dados do usuário, permitindo que o usuário escolha qual dado ele quer editar, e salvando as alterações no arquivo JSON
+function editardadosusuario () { // Função para editar os dados do usuário, permitindo que o usuário escolha qual dado ele quer editar, e salvando as alterações no arquivo JSON.
    
     console.log("\n1 - Editar os dados de um usuário cadastrado."); 
     console.log("2 - Retornar ao menu de opções."); 
@@ -89,8 +89,8 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 
         case"1": rl.question("\nDigite a numeração do usuário que deseja editar os dados: ", (usuariodigitado) => {
             
-            if (usuarioincorreto(usuariodigitado)) { // Se a função de verificar um usuário incorreto for true, o programa é encerrado 
-                editardadosusuario(); // Depois de mostrar a mensagem de que o usuário é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
+            if (usuarioincorreto(usuariodigitado)) { // Se a função de verificar um usuário incorreto for true, o programa é encerrado.
+                editardadosusuario(); // Depois de mostrar a mensagem de que o usuário é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções.
                 return; 
             } 
 
@@ -101,8 +101,8 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
 
             rl.question("\nDigite a numeração do dado que deseja editar: ", (dado) => {
 
-                if (dadoincorreto(dado)) { // Se a função de verificar o dado incorreto for true, o programa é encerrado
-                    editardadosusuario(); // Depois de mostrar a mensagem de que o dado é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções
+                if (dadoincorreto(dado)) { // Se a função de verificar o dado incorreto for true, o programa é encerrado.
+                    editardadosusuario(); // Depois de mostrar a mensagem de que o dado é incorreto, mostra a função de editar os dados do usuário novamente, para o usuário escolher outro usuário para editar ou voltar para o menu de opções.
                     return;
                 }
 
@@ -122,7 +122,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
              } 
 
              if (dado === "2") { // Se o dado escolhido for o e-mail, tem que validar o novo dado com a função de verificar "emailincorreto", para verificar se o novo dado digitado para substituir o e-mail é válido.
-                if(emailincorreto(novodado) || emailrepetido(novodado)) { // Se a função de verificar um e-mail incorreto for true, OU se a função de verificar um e-mail repetido for true, o programa é encerrado
+                if(emailincorreto(novodado) || emailrepetido(novodado)) { // Se a função de verificar um e-mail incorreto for true, OU se a função de verificar um e-mail repetido for true, o programa é encerrado.
                     editardadosusuario(); // Depois de mostrar a mensagem de que o e-mail é incorreto ou que o e-mail já existe, mostra a função de editar os dados do usuário novamente. 
                     return; 
                 } 
@@ -134,7 +134,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
             }      
 
             if (dado === "3") { // Se o dado escolhido for o CPF, tem que validar o novo dado com a função de verificar "cpfincorreto", para verificar se o novo dado digitado para substituir o CPF é válido.
-                if (cpfincorreto(novodado)) { // Se a função de verificar um CPF incorreto for true, o programa é encerrado
+                if (cpfincorreto(novodado)) { // Se a função de verificar um CPF incorreto for true, o programa é encerrado.
                 editardadosusuario(); // Depois de mostrar a mensagem de que o CPF é incorreto, mostra a função de editar os dados do usuário novamente. 
                 return;
             } 
@@ -146,7 +146,7 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
     } 
 
              if (dado === "4") { // Se o dado escolhido for o CEP, tem que validar o novo dado com a função de verificar "cepincorreto", para verificar se o novo dado digitado para substituir o CEP é válido. 
-                if (cepincorreto(novodado)) { // Se a função de verificar um CEP incorreto for true, o programa é encerrado
+                if (cepincorreto(novodado)) { // Se a função de verificar um CEP incorreto for true, o programa é encerrado.
                 editardadosusuario(); // Depois de mostrar a mensagem de que o CEP é incorreto, mostra a função de editar os dados do usuário novamente.              
                 return;
             }
@@ -170,10 +170,10 @@ function editardadosusuario () { // Função para editar os dados do usuário, p
              break;
         
              case "2":   
-        menulooping(); // Chama a função de mostrar o menu de opções, para o usuário escolher outra opção ou sair do programa
+        menulooping(); // Chama a função de mostrar o menu de opções, para o usuário escolher outra opção ou sair do programa.
              break;
 
-        default: console.log("\nComando Inválido.") // Se o usuário digitar uma opção que não existe, mostra a mensagem de comando inválido
+        default: console.log("\nComando Inválido.") // Se o usuário digitar uma opção que não existe, mostra a mensagem de comando inválido.
         editardadosusuario(); 
             
     }     
@@ -292,7 +292,7 @@ rl.question ("Digite seu CEP: ", (CEP) => {
         return;
     } 
 
-     let usuario = { // Cria um objeto usuario com os dados fornecidos
+     let usuario = { // Cria um objeto usuario com os dados fornecidos.
         "Nome Completo": nomecompleto, // Atribui o valor de nomecompleto à propriedade "Nome Completo"
         "E_mail": email, // Atribui o valor de email à propriedade "E_mail"
         "CPF": CPF, // Atribui o valor de CPF à propriedade "CPF"
