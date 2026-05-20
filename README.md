@@ -1,40 +1,140 @@
-# Sistema Interno de Cadastro de Usuários
-Este projeto consiste em um sistema interno de cadastro de usuários desenvolvido em JavaScript (Node.js). O sistema permite gerenciar infomrações, cadastrar, listar, editar e excluir usuários via terminal, armazenando os dados em um arquivo JSON (Dados_usuarios.json). O endereço do usuário (Rua, Bairro, Cidade e Estado) é preenchido automaticamente a partir do CEP informado, utilizando a API pública "ViaCEP".
+# 💼🖥️ Sistema Interno de Cadastro de Usuários
 
-## Tecnologias Utilizadas
+## 📌 Sobre o Projeto
 
-- Node.js
-- JavaScript
-- JSON para persistência de dados
-- API pública ViaCEP
+Este projeto consiste no desenvolvimento de um sistema interno de cadastro de usuários via terminal, utilizando JavaScript com Node.js.
 
-## Estrutura do Projeto
+O sistema permite realizar operações de cadastro, listagem, edição e exclusão de usuários, armazenando as informações em um arquivo JSON para persistência de dados.
 
-```
-Sistema-Interno-de-Cadastro-de-Usuarios/
+Além disso, o projeto possui integração com a API pública ViaCEP, permitindo o preenchimento automático do endereço do usuário a partir do CEP informado.
+
+A aplicação foi desenvolvida com foco em lógica de programação, manipulação de dados, validações e organização de código.
+
+---
+
+## 🎯 Objetivos do Projeto
+
+- Praticar desenvolvimento com Node.js  
+- Trabalhar com manipulação de arquivos JSON  
+- Implementar operações CRUD via terminal  
+- Desenvolver validações de dados  
+- Consumir API externa utilizando JavaScript  
+- Melhorar habilidades com lógica de programação  
+- Organizar código em módulos separados  
+- Simular um sistema interno de gerenciamento de usuários  
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+### 🔹 Backend
+- Node.js  
+- JavaScript  
+
+### 🔹 Outros
+- JSON  
+- Git  
+- GitHub  
+- API ViaCEP  
+
+---
+
+## ⚙️ Funcionalidades
+
+✔️ Cadastro de usuários via terminal  
+✔️ Listagem de usuários cadastrados  
+✔️ Edição de informações dos usuários  
+✔️ Exclusão de usuários  
+✔️ Armazenamento persistente em JSON  
+✔️ Preenchimento automático de endereço via CEP  
+✔️ Validações e restrições de cadastro  
+✔️ Organização modular do sistema  
+
+---
+
+## 📂 Estrutura do Projeto
+
+```bash
+Sistema-Interno-de-Cadastro-de-Usuarios
 │
-├── Campos_usuarios.js // Arquivo de interação com o usuário.
-├── Validar_usuarios.js // Arquivo de funções, validações e restrições.
-├── Dados_usuarios.json // Arquivo que salva os dados do usuário cadastrado.
-└── README.md // Arquivo que contém a descrição do projeto.
+├── Campos_usuarios.js
+├── Validar_usuarios.js
+├── Dados_usuarios.json
+│
+└── README.md
 ```
 
-## Como Executar o Projeto
+---
 
-1. Instalar o Node.js:
-   <https://nodejs.org/pt-br>
-   
-2. Clonar o repositório:
-   git clone <https://github.com/Vinifernandes05/Sistema-Interno-de-Cadastro-de-Usu-rios.git>
+## 🔄 Fluxo da Aplicação
 
-3. Acessar a pasta do projeto:
-   cd Sistema-Interno-de-Cadastro-de-Usuarios
+1. Usuário interage com o sistema via terminal  
+2. O sistema solicita os dados do usuário  
+3. As informações passam por validações internas  
+4. O CEP informado é consultado na API ViaCEP  
+5. O endereço é preenchido automaticamente  
+6. Os dados são armazenados no arquivo JSON  
+7. O sistema permite listar, editar ou excluir usuários cadastrados  
 
-4. Executar o sistema:
-   node Campos_usuarios.js 
+---
 
-## API Utilizada
+## 🌐 Integração com API
 
-O projeto utiliza a API pública "ViaCEP" para consultar automaticamente os dados de endereço a partir do CEP informado.
-Documentação: https://viacep.com.br
-   
+O projeto utiliza a API pública ViaCEP para consulta automática de endereço através do CEP informado.
+
+Os seguintes dados são preenchidos automaticamente:
+
+- Rua  
+- Bairro  
+- Cidade  
+- Estado  
+
+🔗 Documentação da API:  
+https://viacep.com.br/
+
+---
+
+## ▶️ Como Executar o Projeto
+
+### 1️⃣ Instalar o Node.js
+
+Download oficial:  
+https://nodejs.org/pt-br
+
+---
+
+### 2️⃣ Clonar o Repositório
+
+```bash
+git clone https://github.com/Vinifernandes05/Sistema-Interno-de-Cadastro-de-Usu-rios.git
+```
+
+---
+
+### 3️⃣ Acessar a Pasta do Projeto
+
+```bash
+cd Sistema-Interno-de-Cadastro-de-Usuarios
+```
+
+---
+
+### 4️⃣ Executar o Sistema
+
+```bash
+node Campos_usuarios.js
+```
+
+---
+
+## 📞 Contato
+
+👤 **Vinicius Sousa Fernandes**
+
+- 📧 Email: vinifernandes2005@gmail.com  
+- 💼 LinkedIn: https://linkedin.com/in/viniciussousaf  
+- 💻 GitHub: https://github.com/Vinifernandes05  
+
+---
