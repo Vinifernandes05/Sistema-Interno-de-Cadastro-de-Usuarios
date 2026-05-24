@@ -91,8 +91,7 @@ Os seguintes dados são preenchidos automaticamente:
 - Cidade  
 - Estado  
 
-🔗 Documentação da API:  
-https://viacep.com.br/
+Documentação da API:  https://viacep.com.br/
 
 ---
 
@@ -100,8 +99,7 @@ https://viacep.com.br/
 
 ### 1️⃣ Instalar o Node.js
 
-Download oficial:  
-https://nodejs.org/pt-br
+Download oficial:  https://nodejs.org/pt-br
 
 ---
 
