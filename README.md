@@ -59,9 +59,9 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ```bash
 Sistema-Interno-de-Cadastro-de-Usuarios
 │
-├── Campos_usuarios.js
-├── Validar_usuarios.js
-├── Dados_usuarios.json
+├── Campos_usuarios.js # Interação com o usuário via terminal
+├── Validar_usuarios.js # Funções de validação, restrições e regras do sistema
+├── Dados_usuarios.json # Banco de dados (JSON)
 │
 └── README.md
 ```
