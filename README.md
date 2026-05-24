@@ -33,10 +33,10 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - Node.js  
 - JavaScript  
 
-### 🔹 Outros
-- JSON  
+### 🔹 Outros 
 - Git  
-- GitHub  
+- GitHub
+- JSON 
 - API ViaCEP  
 
 ---
